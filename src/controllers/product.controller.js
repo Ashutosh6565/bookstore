@@ -23,10 +23,11 @@ export default class ProductController {  // Renamed the class
         res.render("products", { products: products });
     }
     getnewForm(req,res){
-        res.render('new-product');
+        res.render('new-product', {errorMessage: null});
     }
-    addNewProduct(req,res){
-        console.log(req.body);
+    addNewProduct(req,res, next){
+      
+        // console.log(req.body);
         ProductModel.add(req.body)
         let products = ProductModel.get();
         res.render('products', {products});
