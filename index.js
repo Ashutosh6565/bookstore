@@ -89,6 +89,7 @@ import validation from './src/middleware/validation.middleware.js';
 
 // Create an instance of the Express server
 const server = express();
+server.use(express.static('public'))
 
 // Configure the view engine to use EJS for rendering templates
 server.set("view engine", "ejs");
@@ -111,15 +112,17 @@ server.get('/', productController.getProducts.bind(productController));
 // Route to handle GET requests for '/new', which serves the form for adding a new product
 server.get('/new', productController.getnewForm);
 
-server.get('/update-product',productController.getUpdateProductView)
+server.get('/update-product/:id',productController.getUpdateProductView)
 // Route to handle POST requests to the root URL ('/'), using 'validation' middleware to validate the form input, 
 // then invoking the 'addNewProduct' method to add a new product
 server.post('/', validation, productController.addNewProduct);
+server.get('/delete-product/:id',productController.deleteProduct);
 
+server.post('/update-product',productController.updateProduct);
 // Middleware to serve static files (CSS, JavaScript, images, etc.) from the 'src/views' directory
 server.use(express.static('src/views'));
 
 // Start the server on port 3400, and log a message when the server is up and running
 server.listen(3400, () => {
-  console.log('Server is listening on port 3400');
+  console.log('Server is listening on port 8000');
 });
