@@ -116,7 +116,7 @@ server.get('/update-product/:id',productController.getUpdateProductView)
 // Route to handle POST requests to the root URL ('/'), using 'validation' middleware to validate the form input, 
 // then invoking the 'addNewProduct' method to add a new product
 server.post('/', validation, productController.addNewProduct);
-server.pos('/delete-product/:id',productController.deleteProduct);
+server.post('/delete-product/:id',productController.deleteProduct);
 
 server.post('/update-product',productController.updateProduct);
 // Middleware to serve static files (CSS, JavaScript, images, etc.) from the 'src/views' directory
